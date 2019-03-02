@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { LocalNotifications } from '@ionic-native/local-notifications';
+//import { LocalNotifications } from '@ionic-native/local-notifications';
+declare var cordova;
 
 @Component({
   selector: 'page-home',
@@ -10,17 +11,20 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
 export class HomePage {
 
   constructor(
-  private localNotifications: LocalNotifications,
+  //private localNotifications: LocalNotifications,
   public navCtrl: NavController
   ) {
   }
 
   addNotifications() {
     // Schedule delayed notification
-    this.localNotifications.schedule({
+    //this.localNotifications.
+    cordova.plugins.notification.local.
+    schedule({
        text: 'Delayed ILocalNotification',
        trigger: {
-         at: new Date(new Date().getTime() + 3600)
+         //at: new Date(2019, 3, 2, 11, 30),
+         in: 2, unit: 'minute',
        },
        led: 'FF0000',
        sound: null
